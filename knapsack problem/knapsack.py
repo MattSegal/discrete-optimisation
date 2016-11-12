@@ -5,6 +5,10 @@
 Branch and bound solver for the knapsack problem,
 uses either BFS (queue) or DFS (stack) to navigate solution tree
 uses a value estimating heuristic to prune sub-optimal nodes and reduce the search space
+
+TODO:
+    * add memoization to remove unnecessary summing
+    * remove unecessary array creation - pre allocate memory
 """
 
 import sys
