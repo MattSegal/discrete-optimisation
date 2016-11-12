@@ -4,8 +4,7 @@ Run using
 """
 
 import numpy as np
-from data_repository import KnapsackProblemData
-from knapsack import estimate_value, solve_it
+from knapsack import estimate_value, solve_it, KnapsackProblemData
 
 
 def test_parse_input_1():

@@ -34,12 +34,12 @@ def solve_it(input_text):
     kp.weights      = kp.weights[density_order[::-1]]
     kp.values       = kp.values[density_order[::-1]]
 
-    # ===== Branch and Bound Search ===== #
+    # Begin branch and bound tree search
     best_value    = 0 
 
     stack = Stack() # Set to Stack for DFS or Queue for BFS
-    stack.push([0]) # Initial choice of don't take the first item
-    stack.push([1]) # Initial choice of take the first item
+    stack.push([0]) # Initial choice of 'don't take the first item'
+    stack.push([1]) # Initial choice of 'take the first item'
 
     # Loop until all branches have been explored or pruned
     while len(stack) > 0:
@@ -81,9 +81,8 @@ def solve_it(input_text):
     print "Time taken (s) = ",int((end-start))
 
     optimal = 1 # 1 if solution seems optimal
-    # prepare the solution in the specified output format
-    output_data = str(best_value) + ' ' + str(optimal) + '\n'
-    output_data += str(best_choice)
+    # Prepare the solution in the required output format
+    output_data = "{0} {1}\n{2}".format(best_value, optimal, best_choice)
     
     return output_data
 
@@ -147,13 +146,12 @@ class KnapsackProblemData:
 # =============================================================================== #
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:                                   # opens data file if data file is given as the first argument eg. python solver.py ./data/ks_4_0
-        file_location = sys.argv[1].strip()                 # removes whitespace
-        input_data_file = open(file_location, 'r')          # opens input data file
-        input_data = ''.join(input_data_file.readlines())   # stores input data as a string
-        input_data_file.close()                             # closes input data file
-        print solve_it(input_data)                          # prints result of solve it, with input data as the function inputs
+    if len(sys.argv) > 1:
+        filename = sys.argv[1].strip()
+        with open(filename, 'r') as f:
+            input_text = ''.join(f.readlines())
+        print solve_it(input_text)
     else:
-        print 'This test requires an input file.  Please select one from the data directory. (i.e. python solver.py ./data/ks_4_0)'
+        print 'This test requires an input file.  Please select one from the data directory. (i.e. python knapsack.py ./data/ks_4_0)'
 
 
