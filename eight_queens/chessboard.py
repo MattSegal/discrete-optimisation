@@ -34,10 +34,11 @@ class Chessboard(object):
             for victim_row_idx in range(attacker_row_idx+1,self.BOARD_WIDTH):
                 victim_col = self.rows[victim_row_idx]
 
-                # Two queens in the same row are not allowed by the rows array.
+                # Two queens cannot be in the same row - this is implcitly handled
+                # Two queens cannot be in the same column
                 is_col_attack = victim_col == attacker_col
 
-                # Two queens on the same diagonal cannot attack each other
+                # Two queens cannot be on the same diagonal
                 row_diff = victim_row_idx - attacker_row_idx
                 is_left_row_attack = victim_col + row_diff == attacker_col
                 is_right_row_attack = victim_col + row_diff == attacker_col
