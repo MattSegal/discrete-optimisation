@@ -17,9 +17,6 @@ import copy
 from eval_choice import evaluate_choice
 from backtrack import backtrack
 
-def check_solution(row):
-    pass
-
 def place_queens():
     """
     queens placed column by column using a constraint programming method
@@ -34,11 +31,11 @@ def place_queens():
     row_reset = np.array(copy.deepcopy(row))
     
     # row domain
-    num_queens		= board_width                                       
-    row_list		= np.array([x for x in range(1,num_queens+1)])
-    list_broadcast	= np.array([[1] for x in range(num_queens)])
-    row_domain		= (row_list * list_broadcast).tolist()
-    row_domain_reset	= copy.deepcopy(row_domain)
+    num_queens      = board_width                                       
+    row_list        = np.array([x for x in range(1,num_queens+1)])
+    list_broadcast  = np.array([[1] for x in range(num_queens)])
+    row_domain      = (row_list * list_broadcast).tolist()
+    row_domain_reset    = copy.deepcopy(row_domain)
 
     # search variables
     choice  =   np.zeros((8,2),dtype=np.int32)  # 1 for chosen, 0 for constraint # second column records choice number /options
@@ -47,13 +44,13 @@ def place_queens():
 
     # find solution
     while True:
-	# pick first unchosen queen
+    # pick first unchosen queen
         for queen in range(num_queens):
             queen_unspecified = row[queen] == 0
             if queen_unspecified:
                 break
 
-	   # evaluate choice
+       # evaluate choice
         (solution_found , row , row_domain , choice, options, iterations) = evaluate_choice( queen , row , row_domain , choice , options, iterations )    
 
         # infeasible arrangement found board_width
@@ -75,5 +72,5 @@ def place_queens():
     print row
     #return row
 
-
-place_queens()
+if __name__ == '__main__':
+    place_queens()
